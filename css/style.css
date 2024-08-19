@@ -1,0 +1,601 @@
+:root {
+    --main-color: orangered;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0%;
+    padding: 0%;
+}
+
+body {
+    font-family: sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    background-color: #eee;
+}
+
+a {
+    text-decoration: none;
+}
+
+input:focus {
+    outline: none;
+}
+
+.main-title {
+    color: var(--main-color);
+    font-size: 30px;
+    font-weight: bold;
+    text-transform: capitalize;
+    text-align: center;
+    padding: 60px 0px 0px;
+}
+
+::placeholder {
+    color: gray;
+    font-size: 16px;
+    text-transform: capitalize;
+}
+
+.overlay {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100vh;
+    z-index: 100;
+    background-color: black;
+    opacity: 0.5;
+}
+
+span.close {
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: orangered;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    color: white;
+    cursor: pointer;
+    z-index: 350;
+}
+
+.overlay+.box::after {
+    content: attr(boxTitle);
+    position: absolute;
+    top: -23px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: orangered;
+    color: white;
+    font-weight: bold;
+    font-size: 24px;
+    padding: 10px 20px;
+    border-top-right-radius: 30px;
+    border-top-left-radius: 10px;
+    border: 3px solid white;
+    white-space: nowrap;
+}
+
+.container.game-con {
+    width: 100%;
+    max-width: 500px;
+    padding: 50px 15px 75px;
+    display: none;
+
+    &.active {
+        display: block;
+    }
+
+    .game {
+        >div {
+            width: fit-content;
+            margin: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+
+            &:not(:last-of-type) {
+                margin-bottom: 15px;
+                padding-bottom: 15px;
+                border-bottom: 1px solid #666;
+            }
+
+            span {
+                white-space: nowrap;
+                font-size: 20px;
+                text-transform: capitalize;
+                font-weight: bold;
+                color: var(--main-color);
+            }
+
+            .inputs-con {
+                display: flex;
+                flex-wrap: wrap;
+                justify-items: center;
+                align-items: center;
+                gap: 5px;
+            }
+
+            input {
+                width: 40px;
+                height: 40px;
+                font-size: 28px;
+                text-align: center;
+                background-color: white;
+                caret-color: var(--main-color);
+                border: none;
+                border-bottom: 3px solid;
+
+                &:focus {
+                    outline: none;
+                }
+            }
+
+            &.not-active {
+                opacity: 0.6;
+            }
+
+            &.not-active input {
+                pointer-events: none;
+            }
+
+            input.yes {
+                background-color: rgb(0, 150, 0);
+                border: none;
+            }
+
+            input.no {
+                background-color: #333;
+                border: none;
+            }
+
+            input.may {
+                background-color: orange;
+                border: none;
+            }
+        }
+    }
+
+    .controls {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        margin-top: 75px;
+
+        >div:last-child{
+            display: flex;
+            gap: 30px;
+        }
+
+        .check {
+            padding: 5px 10px;
+            font-size: 20px;
+            font-weight: bold;
+            color: green;
+            border: none;
+            border-radius: 6px;
+            box-shadow: 0px 0px 5px 0px green, 0px 0px 5px 0px green inset;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .check:hover {
+            color: white;
+            background-color: green;
+        }
+
+        button:not(.check) {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: green;
+            border: none;
+            box-shadow: 0px 0px 5px 2px green;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: 0.3s;
+
+            &.home {
+                background-color: white;
+            }
+
+            &.home:hover {
+                background-color: green;
+            }
+
+            &.home:hover i{
+                color: white;
+            }
+
+            &.home i {
+                font-size: 19px;
+                color: green;
+            }
+
+            >i {
+                font-size: 30px;
+                color: #eee;
+                transition: inherit;
+            }
+
+            &:hover {
+                background-color: #eee;
+            }
+
+            &:hover i {
+                color: green;
+            }
+        }
+    }
+}
+
+.home-container.active .home-page {
+    display: flex;
+}
+
+.home-container .home-page {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    padding: 0px 15px 75px;
+    display: none;
+
+    button {
+        border: none;
+        width: 140px;
+        font-size: 25px;
+        cursor: pointer;
+        box-shadow: 0px 0px 5px 0px green, 0px 0px 5px 0px green inset;
+        background-color: transparent;
+        padding: 10px 10px;
+        border-radius: 10px;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background-color: green;
+        color: white;
+    }
+
+    button.start-game i {
+        animation: gameStart 0.8s ease-in-out infinite;
+    }
+
+    .game-data {
+        display: flex;
+        flex-direction: column;
+        border-top: 1px solid black;
+        border-bottom: 1px solid black;
+        visibility: hidden;
+        overflow: hidden;
+        padding: 15px 5px;
+        gap: 15px;
+        margin: 20px;
+        transform: scaleY(0);
+        transition: 0.3s;
+
+        input {
+            width: 200px;
+            padding: 10px;
+            font-size: 18px;
+            border: 1px solid #ccc;
+        }
+
+        input.invalid {
+            border: 1px solid red;
+            box-shadow: 0px 0px 2px 0px red inset;
+        }
+    }
+
+    &.one-player .one-player {
+        background-color: green;
+        color: white;
+    }
+
+    &.two-players .two-players {
+        background-color: green;
+        color: white;
+    }
+
+    &.two-players> .game-data {
+        visibility: visible;
+        transform: scaleY(1);
+    }
+}
+
+.end-message {
+    position: fixed;
+    top: 45%;
+    left: 50%;
+    background-color: white;
+    padding: 30px 15px 20px;
+    transform: translate(-50%, -50%) scale(1.5);
+    z-index: 200;
+    text-align: center;
+
+    .controls {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        opacity: 0;
+        visibility: hidden;
+        animation: loseText 0.5s ease 3s both;
+
+        button {
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            color: green;
+            font-size: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            box-shadow: 0px 0px 5px 0px green, 0px 0px 5px 0px green inset;
+        }
+    }
+
+    >span {
+        transform: translateX(-50%);
+        font-weight: bold;
+        color: green;
+        font-size: 30px;
+        padding: 5px 10px;
+        border-radius: 20px;
+        position: relative;
+        border-radius: 50px;
+        background-color: white;
+
+        &::before,
+        &::after {
+            content: '';
+            position: absolute;
+            width: 55%;
+            height: 100%;
+            border-radius: inherit;
+            top: 50%;
+            transform: translateY(-50%);
+            border-width: 3px;
+            border-style: solid;
+            z-index: -1;
+        }
+
+        &::before {
+            left: -3px;
+            box-shadow: 0px 0px 5px 0px green;
+            border-color: green;
+        }
+
+        &::after {
+            right: -3px;
+            border-color: orangered;
+            box-shadow: 0px 0px 5px 0px orangered;
+        }
+
+        span:first-child {
+            color: orangered;
+        }
+
+        span:last-child {
+            color: green;
+        }
+    }
+
+    p {
+        max-width: 230px;
+        font-size: 15px;
+        color: #444;
+        margin: 20px auto;
+        line-height: 1.6;
+
+        span {
+            font-weight: bold;
+            color: orangered;
+        }
+    }
+
+    p.stars {
+        span {
+            transform: rotate(0) scale(0);
+            animation-name: stars;
+            animation-duration: 1s;
+            animation-fill-mode: both;
+            animation-timing-function: ease;
+        }
+
+        .star-2 {
+            animation-delay: 0.4s !important;
+        }
+
+        .star-3 {
+            animation-delay: 0.1s !important;
+        }
+    }
+
+    &.win p:first-of-type {
+        margin-top: 20px;
+        font-size: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0px;
+    }
+
+    &.win .textAnimation {
+        text-shadow: 0px 0px 5px white;
+        transform: translateY(-10px) scale(0);
+        animation-name: text;
+        animation-duration: 1s;
+        animation-fill-mode: both;
+        animation-timing-function: ease;
+    }
+
+    &.win .textAnimation.grad {
+        animation-delay: 0.9s;
+    }
+
+    &.win h2 {
+        font-size: 16px;
+        animation-delay: 1.4s;
+    }
+
+    &.win p.textAnimation:last-of-type {
+        animation-delay: 1.9s;
+    }
+
+    &.lose p:first-of-type {
+        margin-top: 35px;
+    }
+
+    &.lose .textAnimation {
+        transform: translateY(-10px);
+        opacity: 0;
+        animation-name: loseText;
+        animation-duration: 0.5s;
+        animation-timing-function: ease;
+        animation-fill-mode: both;
+    }
+
+    &.lose h2.textAnimation {
+        animation-delay: 0.8s;
+    }
+
+    &.lose p.textAnimation:last-of-type {
+        animation-delay: 1.6s;
+    }
+}
+
+@media (max-width: 525px) {
+    .end-message {
+        width: 60%;
+        text-align: center;
+    }
+}
+
+@keyframes stars {
+    75% {
+        transform: rotate(800deg) scale(2);
+    }
+
+    100% {
+        transform: rotate(720deg) scale(1);
+    }
+}
+
+@keyframes text {
+    75% {
+        transform: translateY(0px) scale(1.3);
+    }
+
+    100% {
+        transform: translateY(0px) scale(1);
+    }
+}
+
+@keyframes loseText {
+    100% {
+        transform: translateY(0px);
+        visibility: visible;
+        opacity: 1;
+    }
+}
+
+@keyframes gameStart {
+    50% {
+        transform: translateX(6px);
+    }
+
+    0%, 100% {
+        transform: translateX(-6px);
+    }
+}
+
+.gameRules,
+.gameHint {
+    padding: 30px 20px;
+    width: 300px;
+    position: fixed;
+    z-index: 400;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+
+    h3 {
+        line-height: 1.6;
+        letter-spacing: 1px;
+        font-size: 18px;
+        position: relative;
+        padding-left: 50px;
+    }
+
+    h3:not(:last-of-type) {
+        margin-bottom: 30px;
+        padding-bottom: 30px;
+        border-bottom: 1px solid #666;
+    }
+
+    h3:not(:last-of-type)::before {
+        transform: translateY(calc(-50% - 15px));
+    }
+
+    h3::before {
+        content: '';
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        top: 50%;
+        left: 0px;
+    }
+
+    h3:first-child::before {
+        background-color: rgb(0, 150, 0);
+    }
+
+    h3:nth-child(2)::before {
+        background-color: orange;
+    }
+
+    h3:last-of-type::before {
+        background-color: #333;
+        transform: translateY(-50%);
+    }
+
+    p {
+        text-align: center;
+        font-size: 18px;
+        line-height: 1.6;
+    }
+}
+
+footer {
+    text-align: center;
+    width: 100%;
+    padding: 15px;
+    color: white;
+    font-size: 14px;
+    background-color: black;
+    box-shadow: 0px 0px 5px 0px black;
+    color: white;
+}

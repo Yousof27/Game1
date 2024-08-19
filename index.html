@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/all.min.css">
+</head>
+
+<body>
+
+    <h2 class="main-title">quizzle game</h2>
+
+
+    <div class="container game-con">
+        <div class="controls">
+            <div></div>
+            <div></div>
+            <div>
+                <button class="check">Check</button>
+                <button class="hint"><i class="fa-solid fa-face-smile-wink hint"></i></button>
+                <button class="info"><i class="fa-solid fa-circle-info info"></i></button>
+                <a href="index.html"><button class="home"><i class="fa-solid fa-house home"></i></button></a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="home-container active">
+        <div class="home-page">
+            <button class="one-player" onclick="playerOneBtn()">1 Player</button>
+            <button class="two-players" onclick="playerTwoBtn()">2 Players</button>
+            <div class="game-data">
+                <input class="word-field" type="text" placeholder="Enter the word:">
+                <input class="hint-field" type="text" placeholder="Enter the hint:">
+            </div>
+            <button class="start-game" onclick="start()"><i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+    </div>
+
+
+    <footer></footer>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>
